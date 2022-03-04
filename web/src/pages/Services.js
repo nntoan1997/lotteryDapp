@@ -8,6 +8,7 @@ import { Button } from "react-bootstrap";
 const Lottery = () => {
   const { t } = useTranslation();
   const [ethBalance, setEthBalance] = useState()
+  const [render, setRender] = useState(true)
   const [poolInfor, setPoolInfor] = useState()
   const [historyPool, setHistoryPool] = useState([])
   const { activate, account, library, connector, active, deactivate, chainId } = useWeb3React()
@@ -20,7 +21,15 @@ const Lottery = () => {
       setHistoryPool(historyData);
       setPoolInfor(historyData[0]);
     }
-    getInfor();
+    if(!render) {
+      setTimeout(() => {
+        getInfor();
+      }, 5000);
+    } else {
+      getInfor();
+      setRender(false)
+    }
+    
 
   }, [ethBalance, poolInfor, historyPool]);
 
@@ -59,17 +68,26 @@ const Lottery = () => {
         }}
       >
         {poolInfor && (
-          <>          
-          {historyPool.map((pool)=> (
+          <table style={{"width":"100%"}}>  
+            <tr>
+              <th>{t("poolId")}</th>
+              <th>{t("poolPriceTicket")}</th>
+              <th>{t("poolBlockEnd")}</th>
+              <th>{t("poolWinner")}</th>
+              <th>{t("amountPool")}</th>
+            </tr>        
+            {historyPool.map((pool)=> (
             <>
-              <h1 style={{textOverflow: "ellipsis", overflow: "hidden", width: "20%"}}>{t("poolId")}: {pool?.id}</h1>
-              <h1 style={{textOverflow: "ellipsis", overflow: "hidden", width: "20%"}}>{t("poolPriceTicket")} : {pool?.priceTicket}</h1>
-              <h1 style={{textOverflow: "ellipsis", overflow: "hidden", width: "20%"}}>{t("poolBlockEnd")} : {pool?.blockNumberEnd}</h1>
-              <h1 style={{textOverflow: "ellipsis", overflow: "hidden", width: "20%"}}>{t("poolWinner")} : {pool?.winner}</h1>
-              <h1 style={{textOverflow: "ellipsis", overflow: "hidden", width: "20%"}}>{t("amountPool")} : {pool?.amountPool}</h1>
+              <tr>
+                <td>{pool?.id}</td>
+                <td>{pool?.priceTicket}</td>
+                <td>{pool?.blockNumberEnd}</td>
+                <td>{pool?.winner}</td>
+                <td>{pool?.amountPool}</td>
+              </tr>               
             </>
           ))}
-        </>
+        </table>
         )}
         
         
