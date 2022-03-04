@@ -25,6 +25,19 @@
 	},
 	{
 		"inputs": [],
+		"name": "_idPool",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "_value",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "buyTicket",
 		"outputs": [],
 		"stateMutability": "payable",
@@ -62,8 +75,14 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "getCurrentBlock",
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "idpool",
+				"type": "uint256"
+			}
+		],
+		"name": "getBlockEndOfPool",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -82,7 +101,7 @@
 				"type": "uint256"
 			}
 		],
-		"name": "getInforPool",
+		"name": "getHistoryPool",
 		"outputs": [
 			{
 				"components": [
@@ -102,6 +121,11 @@
 						"type": "uint256"
 					},
 					{
+						"internalType": "uint256",
+						"name": "amountToken",
+						"type": "uint256"
+					},
+					{
 						"internalType": "address",
 						"name": "winner",
 						"type": "address"
@@ -115,6 +139,127 @@
 				"internalType": "struct Lottery.Pool",
 				"name": "",
 				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "idpool",
+				"type": "uint256"
+			}
+		],
+		"name": "getInforAmountTokenOfPool",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getInforPoolCurrent",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "priceTicket",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "blockNumberEnd",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountToken",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "winner",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "isDone",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct Lottery.Pool",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "idpool",
+				"type": "uint256"
+			}
+		],
+		"name": "getPrizeOfPool",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "idpool",
+				"type": "uint256"
+			}
+		],
+		"name": "getStatusOfPool",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "idpool",
+				"type": "uint256"
+			}
+		],
+		"name": "getWinnerOfPool",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -182,6 +327,11 @@
 			{
 				"internalType": "uint256",
 				"name": "blockNumberEnd",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amountToken",
 				"type": "uint256"
 			},
 			{

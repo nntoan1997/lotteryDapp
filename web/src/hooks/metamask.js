@@ -7,12 +7,13 @@ export const MetaMaskContext = React.createContext(null)
 export const setupNetwork = async () => {
   const provider = window.ethereum
   if (provider) {
+    if (process.env.REACT_APP_CHAINID == 56)
     try {
       await provider.request({
         method: 'wallet_addEthereumChain',
         params: [
           {
-            chainId: `0x${Number(56).toString(16)}`,
+            chainId: `0x${Number(process.env.REACT_APP_CHAINID).toString(16)}`,
             chainName: 'Binance Smart Chain Mainnet',
             nativeCurrency: {
               name: 'BNB',
@@ -20,9 +21,7 @@ export const setupNetwork = async () => {
               decimals: 18,
             },
             rpcUrls: [
-              "https://bsc-dataseed1.binance.org",
-              "https://bsc-dataseed2.binance.org",
-              "https://bsc-dataseed3.binance.org",
+              process.env.REACT_APP_RPC
             ],
             blockExplorerUrls: ["https://bscscan.com"]
           },
